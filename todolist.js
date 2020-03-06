@@ -43,9 +43,25 @@ class TodoList {
     }
     this.todos.push(todo);
   }
+  
+  filter(callback) {
+    let newList = new TodoList(this.getTitle());
+    
+    this.forEach(todo => {
+      if (callback(todo)) {
+        newList.add(todo);
+      }
+    });
+    
+    return newList;
+  }
 
   first() {
     return this.todos[0];
+  }
+  
+  forEach(callback) {
+    return this.todos.forEach(callback);
   }
 
   getTitle() {
