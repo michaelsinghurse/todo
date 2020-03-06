@@ -93,6 +93,18 @@ class TodoList {
     return this.todos[this.size() - 1];
   }
 
+  markAllDone() {
+    this.forEach(todo => todo.markDone());  
+  }
+
+  markAllUndone() {
+    this.forEach(todo => todo.markUndone());
+  }
+
+  markDone(title) {
+    this.findByTitle(title).markDone();
+  }
+  
   markDoneAt(index) {
     this.itemAt(index).markDone();
   }
@@ -151,6 +163,3 @@ list.add(todo4);
 list.add(todo5);
 list.add(todo6);
 
-// console.log(list.findByTitle('Buy milk'));
-console.log(list.allDone());
-console.log(list.allNotDone());
