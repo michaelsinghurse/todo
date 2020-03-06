@@ -44,6 +44,14 @@ class TodoList {
     this.todos.push(todo);
   }
   
+  allDone() {
+    return this.filter(todo => todo.isDone());
+  }
+  
+  allNotDone() {
+    return this.filter(todo => !todo.isDone());
+  }
+  
   filter(callback) {
     let newList = new TodoList(this.getTitle());
     
@@ -57,8 +65,6 @@ class TodoList {
   }
   
   findByTitle(title) {
-    // filter for todos with title
-    // return the first of those matches
     return this.filter(todo => todo.getTitle() === title).first();
   }
 
@@ -145,5 +151,6 @@ list.add(todo4);
 list.add(todo5);
 list.add(todo6);
 
-console.log(list.findByTitle('Buy milk'));
-
+// console.log(list.findByTitle('Buy milk'));
+console.log(list.allDone());
+console.log(list.allNotDone());
