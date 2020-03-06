@@ -102,7 +102,10 @@ class TodoList {
   }
 
   markDone(title) {
-    this.findByTitle(title).markDone();
+    let todo = this.findByTitle(title)
+    if (todo) {
+      todo.markDone();
+    }
   }
   
   markDoneAt(index) {
@@ -128,6 +131,10 @@ class TodoList {
 
   size() {
     return this.todos.length;
+  }
+
+  toArray() {
+    return this.todos.slice();    
   }
 
   toString() {
@@ -163,3 +170,4 @@ list.add(todo4);
 list.add(todo5);
 list.add(todo6);
 
+list.markDone('Hello');
