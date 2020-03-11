@@ -1,35 +1,6 @@
 // todolist.js
 
-class Todo {
-  static DONE_MARKER = '\u2713';  // check-mark
-  static UNDONE_MARKER = ' ';
-
-  constructor(title) {
-    this.title = title;
-    this.done = false;
-  }
-
-  getTitle() {
-    return this.title;
-  }
-
-  isDone() {
-    return this.done;
-  }
-
-  markDone() {
-    this.done = true;
-  }
-
-  markUndone() {
-    this.done = false;
-  }
-
-  toString() {
-    let marker = this.isDone() ? Todo.DONE_MARKER : Todo.UNDONE_MARKER;
-    return `[${marker}] ${this.getTitle()}`;
-  }
-}
+const Todo = require("./todo");
 
 class TodoList {
   constructor(title) {
@@ -102,7 +73,7 @@ class TodoList {
   }
 
   markDone(title) {
-    let todo = this.findByTitle(title)
+    let todo = this.findByTitle(title);
     if (todo) {
       todo.markDone();
     }
@@ -153,21 +124,4 @@ class TodoList {
   }
 }
 
-let todo1 = new Todo("Buy milk");
-todo1.markDone();
-let todo2 = new Todo("Clean room");
-let todo3 = new Todo("Go to the gym");
-let todo4 = new Todo("Go shopping");
-let todo5 = new Todo("Feed the cats");
-todo5.markDone();
-let todo6 = new Todo("Study for Launch School");
-
-let list = new TodoList("Today's Todos");
-list.add(todo1);
-list.add(todo2);
-list.add(todo3);
-list.add(todo4);
-list.add(todo5);
-list.add(todo6);
-
-list.markDone('Hello');
+module.exports = TodoList;
