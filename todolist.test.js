@@ -144,5 +144,59 @@ describe("TodoList", () => {
     expect(list.filter(todo => todo.getTitle() === todo1.title))
       .toEqual(testList);
   });
+  
+  test('allDone() returns a TodoList with all the done todos', () => {
+    let testList = new TodoList(list.title);
+    testList.add(todo1);
+    testList.add(todo2);
+    
+    list.markDoneAt(0);
+    list.markDoneAt(1);
+    
+    expect(list.allDone()).toEqual(testList);
+  });
+  
+  test('allNotDone() returns a TodoList with all the not done todos', () => {
+    let testList = new TodoList(list.title);
+    testList.add(todo1);
+    testList.add(todo2);
+    testList.add(todo3);
+    
+    expect(list.allNotDone()).toEqual(testList);
+  });
+  
+  test('findByTitle(title) returns the todo with the given title', () => {
+    expect(list.findByTitle(todo1.getTitle())).toEqual(todo1);
+    expect(list.findByTitle("s0ome tit1e")).not.toBeTruthy();
+  });
+  
+  test('markAllUndone() marks every todo as undone', () => {
+    list.markDoneAt(0);
+    list.markDoneAt(1);
+    list.markDoneAt(2);
+    
+    list.markAllUndone();
+    
+    expect(list.allNotDone().toArray()).toEqual([todo1, todo2, todo3]);
+  });
+  
+  test('markDone(title) marks the todo with the given title as done', () => {
+    list.markDone(todo3.title);
+    
+    expect(list.allDone().toArray()).toEqual([todo3]);
+  });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
